@@ -20,9 +20,10 @@ namespace Conversions
     inline errno_t ValueToString(long value, char(&buffer)[size], uint16_t radix)
     {
         // Radix must be 2 <= radix <= 36 or an error is returned.
-        return _ltoa_s(value, temp_buffer, (int) radix);
+        return _ltoa_s(value, buffer, (int) radix);
     }
 
+#if defined(_WIN64)
     //
     // Specialization for unsigned longs. Delegate to _ltoa_s for implementation.
     //
@@ -43,6 +44,7 @@ namespace Conversions
         // Radix must be 2 <= radix <= 36 or an error is returned.
         return _ultoa_s((unsigned long)value, buffer, (int) radix);
     }
+#endif
 
     //
     // Convert a scalar value to an ASCII string.
