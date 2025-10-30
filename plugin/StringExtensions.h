@@ -260,7 +260,7 @@ private:
 	// Add characters under the input iterator until a terminating quote matching
 	// 'quote' is found or the end of the string is found. Embedded quoted characters
 	// preceded by a \ character are copied to the output.
-	void SpanUntilQuote(typename T::value_type quote, T::const_iterator* it, T* item) const
+	void SpanUntilQuote(typename T::value_type quote, typename T::const_iterator* it, T* item) const
 	{
 		// Skip the starting quote and span the remaining characters.
 		++(*it);
