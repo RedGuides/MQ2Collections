@@ -1,286 +1,137 @@
 //
-// Map - map (associative store) from a key to a value for MQ2.
+// Map - map (associative store) from a key to a value for MQ
 //
 
 #pragma once
-#include "DebugMemory.h"
+
+#include "BufferManager.h"
+#include "Collections.h"
+#include "Types.h"
 
 #include <string>
 #include <map>
 
-#include "Types.h"
-#include "Collections.h"
-#include "BufferManager.h"
+//
+// An iterator on a map
+//
 
-using namespace Types;
-using namespace Collections;
-using namespace Utilities::Buffers;
-
-namespace Collections
+class MapIterator
+	: public KeyValueIterator<std::map<std::string, std::string>, std::string, std::string>
+	, public ReferenceType<MapIterator, std::map<std::string, std::string>>
 {
-    namespace Containers
-    {
-        //
-        // An iterator on a map.
-        //
+public:
+	enum class MapIteratorMembers
+	{
+		Reset = 1,
+		Advance,
+		IsEnd,
+		Value,
+		Key,
+		Clone
+	};
 
-        class MapIterator : public KeyValueIterator<std::map<std::string, std::string>, std::string, std::string>,
-                            public ReferenceType<MapIterator, std::map<std::string, std::string>>
-        {
-        public:
-            //
-            // MQ2Type Members
-            //
+	explicit MapIterator(const std::map<std::string, std::string>& refCollection);
 
-            enum class MapIteratorMembers
-            {
-                Reset = 1,
-                Advance,
-                IsEnd,
-                Value,
-                Key,
-                Clone
-            };
+	explicit MapIterator(
+		const std::map<std::string, std::string>& refCollection,
+		const std::string& refKey);
 
-            //
-            // Constructor.
-            //
+	explicit MapIterator(const MapIterator& original);
 
-            explicit MapIterator(const std::map<std::string, std::string> & refCollection);
+	virtual ~MapIterator() override;
 
-            //
-            // Constructor - find a particular element, position to the end
-            // if the element does not exist.
-            //
+	const MapIterator& operator=(const MapIterator&) = delete;
 
-            explicit MapIterator(
-                            const std::map<std::string, std::string> & refCollection,
-                            const std::string & refKey);
+	// Return the name of this type - mapiterator.
+	static const char* GetTypeName();
 
-            //
-            // Copy Constructor from an existing iterator.
-            //
+	// Cloned iterators can be deleted.
+	virtual bool CanDelete() const override;
 
-            explicit MapIterator(const MapIterator & original);
+	// Return the value in the map under the current iterator.
+	virtual bool Value(const std::string** item) const override;
 
-            //
-            // Destructor.
-            //
+	// Return the key in the map under the current iterator.
+	virtual bool Key(const std::string** key) const override;
 
-            ~MapIterator();
+	// Clone this iterator, creating a new one.
+	std::unique_ptr<MapIterator> Clone() const;
 
-            //
-            // Don't permit assignment since the MQ2Type does
-            // implement it.
-            //
+	// When a member function is called on the type, this method is called.
+	// It returns true if the method succeeded and false otherwise.
+	virtual bool GetMember(MQVarPtr VarPtr, const char* Member, char* Index, MQTypeVar& Dest) override;
 
-            const MapIterator &operator=(const MapIterator &) = delete;
+	// Convert the map to a string -- output the current item.
+	virtual bool ToString(MQVarPtr VarPtr, char* Destination) override;
 
-            //
-            // Return the name of this type - mapiterator.
-            //
+protected:
+	// Return an iterator on the map for a particular key. Return false if the key is not found.
+	bool Find(const std::string& refKey);
 
-            static const char *GetTypeName();
+private:
+	// Internal character buffer for an iterated item to return.
+	BufferManager<char> m_Buffer;
+};
 
-            //
-            // Cloned iterators can be deleted.
-            //
 
-            const bool CanDelete() const;
+using MapStorageType = std::map<std::string, std::string>;
 
-            //
-            // Return the value in the map under the current iterator.  
-            //
+// A map is a collection that associates a key with a value. There is
+// only one of each key in the map.
+class Map 
+	: public Collection<MapStorageType, std::string, std::string, KeyValueIterator<MapStorageType, std::string, std::string>>
+	, public ObjectType<Map>
+{
+public:
+	enum class MapMembers
+	{
+		Count = 1,
+		Clear,
+		Contains,
+		Add,
+		Remove,
+		First,
+		Find
+	};
 
-            bool Value(const std::string ** const item) const;
+	Map();
+	virtual ~Map() override;
 
-            //
-            // Return the key in the map under the current iterator.  
-            //
+	Map(const Map&) = delete;
+	const Map& operator=(const Map&) = delete;
 
-            bool Key(const std::string ** const key) const;
+	// Return the name of this type - map.
+	static const char* GetTypeName();
 
-            //
-            // Clone this iterator, creating a new one.
-            //
+	// Return true if a key is in the collection.
+	bool Contains(const std::string& key) const;
 
-            std::unique_ptr<MapIterator> Clone() const;
+	// Add a new element to the map. If he key already exists, the
+	// value is overwritten.
+	void Add(const std::string& key, const std::string& item);
 
-            //
-            // When a member function is called on the type, this method is called.
-            // It returns true if the method succeeded and false otherwise.
-            //
+	// Remove an element from the map. Return false if the item was not in the map.
+	bool Remove(const std::string& item);
 
-            virtual bool GetMember(MQVarPtr VarPtr, const char* Member, char* Index, MQTypeVar &Dest) override;
+	// Return an iterator to a requested key or to the end of the map.
+	KeyValueIterator<MapStorageType, std::string, std::string>* Find(const std::string& refKey);
 
-            //
-            // Convert the map to a string -- output the current item.
-            //
+	// When a member function is called on the type, this method is called.
+	// It returns true if the method succeeded and false otherwise.
+	virtual bool GetMember(MQVarPtr VarPtr, const char* Member, char* Index, MQTypeVar& Dest) override;
 
-            bool ToString(MQVarPtr VarPtr, PCHAR Destination);
+	// Convert the map to a string -- output the count of items.
+	virtual bool ToString(MQVarPtr VarPtr, char* Destination) override;
 
-            //
-            // This method is executed when the /varset statement is executed.  
-            //
+protected:
+	// Return an iterator on the map.
+	virtual std::unique_ptr<KeyValueIterator<MapStorageType, std::string, std::string>> GetNewIterator(const MapStorageType& refCollection) const override;
 
-            virtual bool FromString(MQVarPtr &VarPtr, const char* Source) override;
+private:
+	// Add a key and value to the map, returning true if they were
+	// added and false otherwise.
+	static bool AddKeyAndValue(Map* pThis, char* Arguments);
 
-        protected:
-
-            //
-            // Return an iterator on the map for a particular key.  Return
-            // false if the key is not found.
-            //
-
-            bool Find(const std::string & refKey);
-
-        private:
-
-            //
-            // Internal character buffer for an iterated item to return.
-            //
-
-            BufferManager<char> m_Buffer;
-
-            //
-            // Map from member ids onto names.
-            //
-
-            static const MQTypeMember MapIteratorMembers[];
-
-        };
-
-        //
-        // A map is a collection that associates a key with a value.  There is
-        // only one of each key in the map.
-        //
-
-        class Map : public Collection<
-                            std::map<std::string, std::string>,
-                            std::string,
-                            std::string,
-                            KeyValueIterator<std::map<std::string, std::string>, std::string, std::string>>,
-                    public ObjectType<Map>
-        {
-        public:
-
-            //
-            // MQ2Type Members
-            //
-
-            enum class MapMembers
-            {
-                Count = 1,
-                Clear,
-                Contains,
-                Add,
-                Remove,
-                First,
-                Find
-            };
-
-            //
-            // Constructor.
-            //
-
-            Map();
-
-            //
-            // Destructor.
-            //
-
-            ~Map();
-
-            //
-            // Don't permit copy construction and assignment since the MQ2Type does
-            // implement them.
-            //
-
-            Map(const Map &) = delete;
-            const Map &operator=(const Map &) = delete;
-
-            //
-            // Return the name of this type - map.
-            //
-
-            static const char *GetTypeName();
-
-            //
-            // Return true if a key is in the collection.
-            //
-
-            bool Contains(const std::string &key) const;
-
-            //
-            // Add a new element to the map.  If he key already exists, the
-            // value is overwritten.
-            //
-
-            void Add(const std::string &key, const std::string &item);
-
-            //
-            // Remove an element from the map.  Return false if the item was not
-            // in the map.
-            //
-
-            bool Remove(const std::string &item);
-
-            //
-            // Return an iterator to a requested key or to the end of the map.
-            //
-
-            KeyValueIterator<std::map<std::string, std::string>, std::string, std::string> * Find(
-                                const std::string & refKey);
-
-            //
-            // When a member function is called on the type, this method is called.
-            // It returns true if the method succeeded and false otherwise.
-            //
-
-            virtual bool GetMember(MQVarPtr VarPtr, const char* Member, char* Index, MQTypeVar& Dest) override;
-
-            //
-            // Convert the map to a string -- output the count of items.
-            //
-
-            bool ToString(MQVarPtr VarPtr, PCHAR Destination);
-
-            //
-            // This method is executed when the /varset statement is executed.
-            // Ignore the call.
-            //
-
-            virtual bool FromString(MQVarPtr& VarPtr, const char* Source) override;
-
-        protected:
-
-            //
-            // Return an iterator on the map.
-            //
-
-            std::unique_ptr<KeyValueIterator<std::map<std::string, std::string>, std::string, std::string>> GetNewIterator(
-                    const std::map<std::string, std::string> & refCollection) const;
-
-        private:
-
-            //
-            // Add a key and value to the map, returning true if they were
-            // added and false otherwise.
-            //
-
-            bool AddKeyAndValue(Map * pThis, PCHAR Arguments);
-
-            //
-            // Iterator returned by Find operations.
-            //
-
-            std::unique_ptr<MapIterator> m_findIter;
-
-            //
-            // Map from member ids onto names.
-            //
-
-            static const MQTypeMember MapMembers[];
-        };
-    }  // namespace Containers
-}  // namespace Collections
+	// Iterator returned by Find operations.
+	std::unique_ptr<MapIterator> m_findIter;
+};
