@@ -2,88 +2,82 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="List.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MQ2Collections.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Queue.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Set.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Stack.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Types.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MQ2CollectionsImpl.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BufferManager.h">
-      <Filter>Includes</Filter>
+      <Filter>Include Files</Filter>
     </ClInclude>
     <ClInclude Include="Collections.h">
-      <Filter>Includes</Filter>
-    </ClInclude>
-    <ClInclude Include="Conversions.h">
-      <Filter>Includes</Filter>
+      <Filter>Include Files</Filter>
     </ClInclude>
     <ClInclude Include="List.h">
-      <Filter>Includes</Filter>
-    </ClInclude>
-    <ClInclude Include="Macros.h">
-      <Filter>Includes</Filter>
+      <Filter>Include Files</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>Includes</Filter>
+      <Filter>Include Files</Filter>
     </ClInclude>
     <ClInclude Include="Queue.h">
-      <Filter>Includes</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Includes</Filter>
+      <Filter>Include Files</Filter>
     </ClInclude>
     <ClInclude Include="Set.h">
-      <Filter>Includes</Filter>
+      <Filter>Include Files</Filter>
     </ClInclude>
     <ClInclude Include="Stack.h">
-      <Filter>Includes</Filter>
+      <Filter>Include Files</Filter>
     </ClInclude>
     <ClInclude Include="StringExtensions.h">
-      <Filter>Includes</Filter>
+      <Filter>Include Files</Filter>
     </ClInclude>
     <ClInclude Include="Types.h">
-      <Filter>Includes</Filter>
+      <Filter>Include Files</Filter>
     </ClInclude>
-    <ClInclude Include="MQ2CollectionsImpl.h">
-      <Filter>Includes</Filter>
+    <ClInclude Include="pch.h">
+      <Filter>Include Files</Filter>
     </ClInclude>
-    <ClInclude Include="DebugMemory.h">
-      <Filter>Includes</Filter>
+    <ClInclude Include="resource.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Includes">
-      <UniqueIdentifier>{59f6c684-b217-4ca8-92d9-368bb5af6575}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources">
-      <UniqueIdentifier>{85215cc0-4c02-499f-bda4-ea4dfe949ce4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source">
+    <Filter Include="Source Files">
       <UniqueIdentifier>{702036ce-80d9-4d16-a675-f08d3e5c8faf}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{85215cc0-4c02-499f-bda4-ea4dfe949ce4}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Include Files">
+      <UniqueIdentifier>{59f6c684-b217-4ca8-92d9-368bb5af6575}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MQ2Collections.rc">
-      <Filter>Resources</Filter>
+      <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
 </Project>

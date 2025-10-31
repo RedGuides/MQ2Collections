@@ -22,7 +22,12 @@
     <ClCompile Include="List.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MQ2Collections.cpp" />
-    <ClCompile Include="MQ2CollectionsImpl.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Set.cpp" />
     <ClCompile Include="Stack.cpp" />
@@ -34,12 +39,9 @@
   <ItemGroup>
     <ClInclude Include="BufferManager.h" />
     <ClInclude Include="Collections.h" />
-    <ClInclude Include="Conversions.h" />
-    <ClInclude Include="DebugMemory.h" />
     <ClInclude Include="List.h" />
-    <ClInclude Include="Macros.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="MQ2CollectionsImpl.h" />
+    <ClInclude Include="pch.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Set.h" />
@@ -129,8 +131,10 @@
     <ClCompile>
       <RuntimeTypeInfo>
       </RuntimeTypeInfo>
-      <PrecompiledHeaderFile />
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile />
+      <PreprocessorDefinitions>_CRTDBG_MAP_ALLOC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link />
   </ItemDefinitionGroup>
@@ -138,10 +142,11 @@
     <ClCompile>
       <RuntimeTypeInfo>
       </RuntimeTypeInfo>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
+      <PreprocessorDefinitions>_CRTDBG_MAP_ALLOC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link />
   </ItemDefinitionGroup>
@@ -149,8 +154,9 @@
     <ClCompile>
       <RuntimeTypeInfo>
       </RuntimeTypeInfo>
-      <PrecompiledHeaderFile />
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile />
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link />
   </ItemDefinitionGroup>
@@ -158,10 +164,10 @@
     <ClCompile>
       <RuntimeTypeInfo>
       </RuntimeTypeInfo>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link />
   </ItemDefinitionGroup>
