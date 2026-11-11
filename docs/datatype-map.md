@@ -12,33 +12,33 @@ A map is a collection of keys, each of which is associated with a value. Maps ar
 
 ## Members
 <!--dt-members-start-->
-### {{ renderMember(type='int', name='Count') }}
+/// member | int Count
+Number of items added to the map.
+///
 
-:   Number of items added to the map.
+/// member | bool Clear
+Removes all items from the map. True is always returned.
+///
 
-### {{ renderMember(type='bool', name='Clear') }}
+/// member | bool Contains[string]
+True is returned if the item is in the map.
+///
 
-:   Removes all items from the map. True is always returned.
+/// member | bool Add[string,string]
+True is returned if the item was added to the map. If the first string, called the 'key' is already in the map, the second string, called the 'value' will be replaced.
+///
 
-### {{ renderMember(type='bool', name='Contains', params='ѕtring') }}
+/// member | bool Remove[string]
+True is returned if the 'key' matching string was removed from the map.
+///
 
-:   True is returned if the item is in the map.
+/// member | mapiterator First
+A mapiterator is returned on the map where the current element under the iterator is the first element in the map if the map has elements or an empty iterator if the map is empty.
+///
 
-### {{ renderMember(type='bool', name='Add', params='string,string') }}
-
-:   True is returned if the item was added to the map. If the first string, called the 'key' is already in the map, the second string, called the 'value' will be replaced.
-
-### {{ renderMember(type='bool', name='Remove', params='ѕtring') }}
-
-:   True is returned if the 'key' matching string was removed from the map.
-
-### {{ renderMember(type='mapiterator', name='First') }}
-
-:   A mapiterator is returned on the map where the current element under the iterator is the first element in the map if the map has elements or an empty iterator if the map is empty.
-
-### {{ renderMember(type='mapiterator', name='Find', params='ѕtring') }}
-
-:   A mapiterator is returned on the map where the current element under the iterator is the item if the item is in the map and an empty iterator if it is not.
+/// member | mapiterator Find[string]
+A mapiterator is returned on the map where the current element under the iterator is the item if the item is in the map and an empty iterator if it is not.
+///
 
 <!--dt-members-end-->
 

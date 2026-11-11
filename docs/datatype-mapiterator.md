@@ -12,29 +12,29 @@ A mapiterator implements a forward iterator over the map type. A forward iterato
 
 ## Members
 <!--dt-members-start-->
-### {{ renderMember(type='bool', name='Reset') }}
+/// member | bool Reset
+Positions the iterator to the start of the map. True is always returned.
+///
 
-:   Positions the iterator to the start of the map. True is always returned.
+/// member | bool Advance
+The iterator is moved to the next item in the map, if one exists. True is returned if the iterator was advanced and False otherwise.
+///
 
-### {{ renderMember(type='bool', name='Advance') }}
+/// member | bool IsEnd
+True if the iterator is at the end of the map.
+///
 
-:   The iterator is moved to the next item in the map, if one exists. True is returned if the iterator was advanced and False otherwise.
+/// member | string Value
+Returns the element of the map under the iterator.
+///
 
-### {{ renderMember(type='bool', name='IsEnd') }}
+/// member | string Key
+Returns the unique key for the element of the map under the iterator.
+///
 
-:   True if the iterator is at the end of the map.
-
-### {{ renderMember(type='string', name='Value') }}
-
-:   Returns the element of the map under the iterator.
-
-### {{ renderMember(type='string', name='Key') }}
-
-:   Returns the unique key for the element of the map under the iterator.
-
-### {{ renderMember(type='mapiterator', name='Clone') }}
-
-:   Returns a copy of the current mapiterator. A copy has independent life and initially is over the same element as the source iterator.
+/// member | mapiterator Clone
+Returns a copy of the current mapiterator. A copy has independent life and initially is over the same element as the source iterator.
+///
 
 <!--dt-members-end-->
 

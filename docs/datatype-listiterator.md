@@ -12,25 +12,25 @@ A listiterator implements a forward iterator over the list type. A forward itera
 
 ## Members
 <!--dt-members-start-->
-### {{ renderMember(type='bool', name='Reset') }}
+/// member | bool Reset
+Positions the iterator to the start of the list. True is always returned.
+///
 
-:   Positions the iterator to the start of the list. True is always returned.
+/// member | bool Advance
+The iterator is moved to the next item in the list, if one exists. True is returned if the iterator was advanced and False otherwise.
+///
 
-### {{ renderMember(type='bool', name='Advance') }}
+/// member | bool IsEnd
+True if the iterator is at the end of the list.
+///
 
-:   The iterator is moved to the next item in the list, if one exists. True is returned if the iterator was advanced and False otherwise.
+/// member | string Value
+Returns the element of the list under the iterator.
+///
 
-### {{ renderMember(type='bool', name='IsEnd') }}
-
-:   True if the iterator is at the end of the list.
-
-### {{ renderMember(type='string', name='Value') }}
-
-:   Returns the element of the list under the iterator.
-
-### {{ renderMember(type='listiterator', name='Clone') }}
-
-:   Returns a copy of the current listiterator. A copy has independent life and initially is over the same element as the source iterator.
+/// member | listiterator Clone
+Returns a copy of the current listiterator. A copy has independent life and initially is over the same element as the source iterator.
+///
 
 <!--dt-members-end-->
 

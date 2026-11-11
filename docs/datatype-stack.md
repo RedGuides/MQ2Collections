@@ -12,25 +12,25 @@ A stack is a last-in, first-out data structure. Items inserted (Pushed) are plac
 
 ## Members
 <!--dt-members-start-->
-### {{ renderMember(type='int', name='Count') }}
+/// member | int Count
+Number of items inserted onto the stack.
+///
 
-:   Number of items inserted onto the stack.
+/// member | bool Push[string]
+True if the item was pushed successfully.
+///
 
-### {{ renderMember(type='bool', name='Push', params='ѕtring') }}
+/// member | string Pop
+False is returned if IsEmpty is true.
+///
 
-:   True if the item was pushed successfully.
+/// member | bool IsEmpty
+True if Count = 0, False otherwise.
+///
 
-### {{ renderMember(type='string', name='Pop') }}
-
-:   False is returned if IsEmpty is true.
-
-### {{ renderMember(type='bool', name='IsEmpty') }}
-
-:   True if Count = 0, False otherwise.
-
-### {{ renderMember(type='string', name='Peek') }}
-
-:   False is returned if IsEmpty is true.
+/// member | string Peek
+False is returned if IsEmpty is true.
+///
 
 <!--dt-members-end-->
 

@@ -14,33 +14,33 @@ Adding an item that is already in a set does not alter the set.
 
 ## Members
 <!--dt-members-start-->
-### {{ renderMember(type='int', name='Count') }}
+/// member | int Count
+Number of items added to the set.
+///
 
-:   Number of items added to the set.
+/// member | bool Clear
+Removes all items from the set. True is always returned.
+///
 
-### {{ renderMember(type='bool', name='Clear') }}
+/// member | bool Contains[string]
+True is returned if the item is in the set.
+///
 
-:   Removes all items from the set. True is always returned.
+/// member | bool Add[sequence]
+True is returned if the item(s) were added to the set.
+///
 
-### {{ renderMember(type='bool', name='Contains', params='ѕtring') }}
+/// member | bool Remove[string]
+True is returned if the item was removed from the set.
+///
 
-:   True is returned if the item is in the set.
+/// member | setiterator First
+A setiterator is returned on the set where the current element under the iterator is the first element in the set if the set has elements or an empty iterator if the set is empty.
+///
 
-### {{ renderMember(type='bool', name='Add', params='sequence') }}
-
-:   True is returned if the item(s) were added to the set.
-
-### {{ renderMember(type='bool', name='Remove', params='ѕtring') }}
-
-:   True is returned if the item was removed from the set.
-
-### {{ renderMember(type='setiterator', name='First') }}
-
-:   A setiterator is returned on the set where the current element under the iterator is the first element in the set if the set has elements or an empty iterator if the set is empty.
-
-### {{ renderMember(type='setiterator', name='Find', params='ѕtring') }}
-
-:   A setiterator is returned on the set where the current element under the iterator is the item if the item is in the set and an empty iterator if it is not.
+/// member | setiterator Find[string]
+A setiterator is returned on the set where the current element under the iterator is the item if the item is in the set and an empty iterator if it is not.
+///
 
 <!--dt-members-end-->
 

@@ -12,89 +12,89 @@ A sequence of items in which it is possible to remove items from the ends or fro
 
 ## Members
 <!--dt-members-start-->
-### {{ renderMember(type='int', name='Count') }}
+/// member | int Count
+Number of items in the list.
+///
 
-:   Number of items in the list.
+/// member | bool Clear
+Removes all elements from the list. Always returns true.
+///
 
-### {{ renderMember(type='bool', name='Clear') }}
+/// member | bool Contains[string]
+True if at least one instance of string is contained in the list and false otherwise.
+///
 
-:   Removes all elements from the list. Always returns true.
+/// member | list Splice
+Returns a copy of the original list.
+///
 
-### {{ renderMember(type='bool', name='Contains', params='ѕtring') }}
+/// member | list Splice[int]
+Returns a copy of the original list from the indicated position to the end of the list.
+///
 
-:   True if at least one instance of string is contained in the list and false otherwise.
+/// member | list Splice[int, int]
+Returns a copy of the original list from the position specified by the first argument for an indicated number of elements.
+///
 
-### {{ renderMember(type='list', name='Splice') }}
+/// member | int Index[string]
+Returns the ordinal position of String in the List or -1 if String can not be found.
+///
 
-:   Returns a copy of the original list.
+/// member | string Item[int]
+Returns the string at the indicated position in the list.
+///
 
-### {{ renderMember(type='list', name='Splice', params='іnt') }}
+/// member | bool Insert[int,sequence]
+Insert a sequence of comma delimited strings into the source list before the ordinal indicated by Integer. True is returned if the sequence could be inserted and false otherwise.
+///
 
-:   Returns a copy of the original list from the indicated position to the end of the list.
+/// member | bool Sort
+Lexicographically orders the items. The source list is modified in place.
+///
 
-### {{ renderMember(type='list', name='Splice', params='int, int') }}
+/// member | bool Reverse
+Reorder the list in such a way that the 0'th item is swapped with the `Count` -1th item, the item with ordinal 1 with the `Count` -2th item, etc.
+///
 
-:   Returns a copy of the original list from the position specified by the first argument for an indicated number of elements.
+/// member | bool Append[sequence]
+Insert a sequence of comma delimited strings onto the tail of the list.
+///
 
-### {{ renderMember(type='int', name='Index', params='ѕtring') }}
+/// member | int Remove[string]
+Remove string from the input list. Return a count of how many times the item was removed.
+///
 
-:   Returns the ordinal position of String in the List or -1 if String can not be found.
+/// member | bool Erase[int]
+Remove an item from the input list by position. Return true if the item was removed or false if not.
+///
 
-### {{ renderMember(type='string', name='Item', params='іnt') }}
+/// member | int Replace[string,string]
+Replaces the first string with the second string in the input list. A count of the number of times the replacement was performed is returned.
+///
 
-:   Returns the string at the indicated position in the list.
+/// member | listiterator First
+A listlterator is returned on the list where the current element under the iterator is the Head of the list if the list has elements or an empty iterator if the list is empty.
+///
 
-### {{ renderMember(type='bool', name='Insert', params='int,sequence') }}
+/// member | listiterator Find[string]
+A listiterator is returned on the list where the current element under the iterator is the first item with a value equal to string if string is in the list and an empty iterator if it is not.
+///
 
-:   Insert a sequence of comma delimited strings into the source list before the ordinal indicated by Integer. True is returned if the sequence could be inserted and false otherwise.
+/// member | string Head
+Remove and return the current item described at position 0 in the list. False is returned if the list is empty.
+///
 
-### {{ renderMember(type='bool', name='Sort') }}
+/// member | string Tail
+Remove and return the current item described by position Count -1 in the list. False is returned if the list is empty.
+///
 
-:   Lexicographically orders the items. The source list is modified in place.
+/// member | int CountOf[string]
+Return a count of the number of times string occurs in the list.
+///
 
-### {{ renderMember(type='bool', name='Reverse') }}
-
-:   Reorder the list in such a way that the 0'th item is swapped with the `Count` -1th item, the item with ordinal 1 with the `Count` -2th item, etc.
-
-### {{ renderMember(type='bool', name='Append', params='sequence') }}
-
-:   Insert a sequence of comma delimited strings onto the tail of the list.
-
-### {{ renderMember(type='int', name='Remove', params='ѕtring') }}
-
-:   Remove string from the input list. Return a count of how many times the item was removed.
-
-### {{ renderMember(type='bool', name='Erase', params='іnt') }}
-
-:   Remove an item from the input list by position. Return true if the item was removed or false if not.
-
-### {{ renderMember(type='int', name='Replace', params='string,string') }}
-
-:   Replaces the first string with the second string in the input list. A count of the number of times the replacement was performed is returned.
-
-### {{ renderMember(type='listiterator', name='First') }}
-
-:   A listlterator is returned on the list where the current element under the iterator is the Head of the list if the list has elements or an empty iterator if the list is empty.
-
-### {{ renderMember(type='listiterator', name='Find', params='ѕtring') }}
-
-:   A listiterator is returned on the list where the current element under the iterator is the first item with a value equal to string if string is in the list and an empty iterator if it is not.
-
-### {{ renderMember(type='string', name='Head') }}
-
-:   Remove and return the current item described at position 0 in the list. False is returned if the list is empty.
-
-### {{ renderMember(type='string', name='Tail') }}
-
-:   Remove and return the current item described by position Count -1 in the list. False is returned if the list is empty.
-
-### {{ renderMember(type='int', name='CountOf', params='ѕtring') }}
-
-:   Return a count of the number of times string occurs in the list.
-
-### {{ renderMember(type='string', name='Delimiter', params='ѕtring') }}
-
-:   Sets the delimiter used to separate items in Insert and Append method calls. The previous delimiter is returned.
+/// member | string Delimiter[string]
+Sets the delimiter used to separate items in Insert and Append method calls. The previous delimiter is returned.
+///
 
 <!--dt-members-end-->
 

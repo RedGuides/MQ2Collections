@@ -12,21 +12,21 @@ A setiterator implements a forward iterator over the set type. A forward iterato
 
 ## Members
 <!--dt-members-start-->
-### {{ renderMember(type='bool', name='Reset') }}
+/// member | bool Reset
+Positions the iterator to the start of the set. True is always returned.
+///
 
-:   Positions the iterator to the start of the set. True is always returned.
+/// member | bool Advance
+The iterator is moved to the next item in the set, if one exists. True is returned if the iterator was advanced and False otherwise.
+///
 
-### {{ renderMember(type='bool', name='Advance') }}
+/// member | bool IsEnd
+True if the iterator is at the end of the set.
+///
 
-:   The iterator is moved to the next item in the set, if one exists. True is returned if the iterator was advanced and False otherwise.
-
-### {{ renderMember(type='bool', name='IsEnd') }}
-
-:   True if the iterator is at the end of the set.
-
-### {{ renderMember(type='string', name='Value') }}
-
-:   Returns the element of the set under the iterator.
+/// member | string Value
+Returns the element of the set under the iterator.
+///
 
 <!--dt-members-end-->
 
